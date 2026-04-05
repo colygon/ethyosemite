@@ -57,6 +57,24 @@
       <p class="subtitle">The Ethereum Festival in the Wild</p>
       <a href="/festival/" class="btn btn-filled" style="margin-right: 1rem;">The Festival</a>
       <a href="https://t.me/+NOdOJc8yw4Y3YjBh" target="_blank" class="btn">Chat with Us</a>
+      <div class="countdown" id="countdown" style="margin-top: 2rem;">
+        <div class="countdown-unit">
+          <div class="countdown-number" id="cd-days">--</div>
+          <div class="countdown-label">Days</div>
+        </div>
+        <div class="countdown-unit">
+          <div class="countdown-number" id="cd-hours">--</div>
+          <div class="countdown-label">Hours</div>
+        </div>
+        <div class="countdown-unit">
+          <div class="countdown-number" id="cd-mins">--</div>
+          <div class="countdown-label">Min</div>
+        </div>
+        <div class="countdown-unit">
+          <div class="countdown-number" id="cd-secs">--</div>
+          <div class="countdown-label">Sec</div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -425,6 +443,23 @@
   </style>
 
   <script>
+    // Countdown timer
+    const target = new Date('2025-10-22T09:00:00-07:00').getTime();
+    function updateCountdown() {
+      const now = Date.now();
+      const diff = Math.max(0, target - now);
+      const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const s = Math.floor((diff % (1000 * 60)) / 1000);
+      document.getElementById('cd-days').textContent = String(d).padStart(2, '0');
+      document.getElementById('cd-hours').textContent = String(h).padStart(2, '0');
+      document.getElementById('cd-mins').textContent = String(m).padStart(2, '0');
+      document.getElementById('cd-secs').textContent = String(s).padStart(2, '0');
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
     // Music player toggle
     const musicToggle = document.getElementById('musicToggle');
     const musicPlayer = document.getElementById('musicPlayer');
